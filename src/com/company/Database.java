@@ -35,12 +35,24 @@ public class Database {
         return notes;
     }
 
-    public void createNotes(Note note){
+    public void createNote(Note note){
 
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO notes(checked, text) VALUES(?, ?)");
             stmt.setBoolean(1, note.getChecked());
             stmt.setString(2, note.getText());
+
+            stmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void deleteNote(Note note) {
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM notes WHERE id = ?");
+            stmt.setInt(1, note.getId());
 
             stmt.executeUpdate();
         } catch (SQLException throwables) {
