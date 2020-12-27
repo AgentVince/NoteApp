@@ -2,6 +2,8 @@ package com.company;
 import express.Express;
 import express.middleware.Middleware;
 
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class Main {
@@ -19,6 +21,11 @@ public class Main {
 
         });
 
+        try {
+            app.use(Middleware.statics(Paths.get("src/web").toString()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         app.listen(3000);
         System.out.println("The server has started at port 3000.");
