@@ -25,10 +25,19 @@ public class Main {
 
             Note note = (Note) req.getBody(Note.class);
 
-            db.createNotes(note);
+            db.createNote(note);
 
             res.send("Note added");
 
+        });
+
+        app.delete("/rest/notes/:id", (req, res) -> {
+
+            Note note = (Note) req.getBody(Note.class);
+
+            db.deleteNote(note);
+
+            res.send("Note deleted");
         });
 
 
