@@ -34,4 +34,17 @@ public class Database {
         }
         return notes;
     }
+
+    public void createNotes(Note note){
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO notes(checked, text) VALUES(?, ?)");
+            stmt.setBoolean(1, note.getChecked());
+            stmt.setString(2, note.getText());
+
+            stmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

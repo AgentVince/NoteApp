@@ -21,6 +21,17 @@ public class Main {
 
         });
 
+        app.post("/rest/notes", (req, res) -> {
+
+            Note note = (Note) req.getBody(Note.class);
+
+            db.createNotes(note);
+
+            res.send("Note added");
+
+        });
+
+
         try {
             app.use(Middleware.statics(Paths.get("src/web").toString()));
         } catch (IOException e) {
