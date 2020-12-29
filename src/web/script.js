@@ -18,8 +18,27 @@ function renderNotes() {
     }
 
     deleteNote();
-    // Add a mark function for marking things in the list.
+    markAsDone();
+}
 
+function markAsDone() {
+
+    let allNotes = $("li");
+
+    for (let i = 0; i < allNotes.length; i++) {
+        $(allNotes[i]).click(function () {
+            
+            if (notes[i].checked == true) {
+                notes[i].checked = false;
+                $(allNotes[i]).removeClass("isCheckedtrue").addClass("isCheckedfalse");
+            }
+            else if (notes[i].checked == false) {
+                notes[i].checked = true;
+                $(allNotes[i]).removeClass("isCheckedfalse").addClass("isCheckedtrue");
+            }
+            updateNote(notes[i]);
+        })
+    }
 }
 
 function addNote() {
@@ -76,6 +95,19 @@ async function deleteNoteFromDB(note) {
     let result = await fetch('/rest/notes/id', {
         method: "DELETE",
         body: JSON.stringify(noteToDelete)
+    });
+}
+
+async function updateNote(note) {
+
+    let noteToUpdate = {
+        id: note.id,
+        checked: note.checked
+    }
+
+    let result = await fetch('/rest/notes/id', {
+        method: "PUT",
+        body: JSON.stringify(note)
     });
 }
 

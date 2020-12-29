@@ -59,4 +59,17 @@ public class Database {
             throwables.printStackTrace();
         }
     }
+
+    public void updateNote(Note note) {
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET checked = ? WHERE id = ?");
+            stmt.setBoolean(1, note.getChecked());
+            stmt.setInt(2, note.getId());
+
+            stmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

@@ -1,3 +1,49 @@
+body {
+    padding: 10px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    cursor: crosshair;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+ul li:hover {
+    text-decoration-color: orange;
+    color: orange;
+}
+
+ul li.isCheckedtrue {
+    text-decoration: line-through;
+    background-color: lightblue;
+}
+
+.isCheckedtrue::before {
+    content: "\2713";
+    position: absolute;
+    font-size: 15px;
+    left: 15px;
+    font-weight: bolder;
+    color: green;
+}
+
 .deleteButton {
     position: absolute;
     color: white;
@@ -9,4 +55,42 @@
 .deleteButton:hover {
     background-color: #f44336;
     color: white;
+}
+
+.header {
+    background-color: deepskyblue;
+    padding: 30px 40px;
+}
+
+.header:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+input {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+}
+
+.addBtn {
+    padding: 10px;
+    width: 25%;
+    background: lightgreen;
+    color: white;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+}
+
+.addBtn:hover {
+    background-color: lime;
 }

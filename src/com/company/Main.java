@@ -40,6 +40,16 @@ public class Main {
             res.send("Note deleted");
         });
 
+        app.put("/rest/notes/:id", (req, res) -> {
+
+            Note note = (Note) req.getBody(Note.class);
+
+            db.updateNote(note);
+
+            res.send("Note updated");
+
+        });
+
 
         try {
             app.use(Middleware.statics(Paths.get("src/web").toString()));
